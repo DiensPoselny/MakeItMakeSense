@@ -1,0 +1,39 @@
+:root{
+    --primary-color: #f7b801;
+    --secondary-color: #f18701;
+    --tertiary-color: #f35b04;
+    --light-contrast-color: #7678ed;
+    --dark-contrast-color: #3d348b;
+    --white-color: #ffffff;
+    --black-color: #000000;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    * {
+        font-family: "Bowlby One", sans-serif;
+
+    }
+
+    body {
+        background-color: var(--primary-color);
+    }
+    #title-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    #title-container h1 {
+
+        font-size: 40px;
+    }
+    #make {
+        color: var(--light-contrast-color);
+    }
+    #make-again{
+        color: var(--light-contrast-color);
+    }
+
+    
+}
