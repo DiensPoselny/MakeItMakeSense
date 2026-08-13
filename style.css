@@ -1,39 +1,51 @@
-:root{
-    --primary-color: #f7b801;
-    --secondary-color: #f18701;
-    --tertiary-color: #f35b04;
-    --light-contrast-color: #7678ed;
-    --dark-contrast-color: #3d348b;
-    --white-color: #ffffff;
-    --black-color: #000000;
+:root {
+  --dark-color: #000000;
+  --light-color: #f5f5f5;
+  --background-color: #171717;
+  --shadow-color: #565656;
 }
 
-
-
 @media only screen and (max-width: 600px) {
-    * {
-        font-family: "Bowlby One", sans-serif;
+  * {
+    font-family: "Bowlby One", sans-serif;
+    color: var(--light-color);
+  }
 
-    }
-
-    body {
-        background-color: var(--primary-color);
-    }
-    #title-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-    }
-    #title-container h1 {
-
-        font-size: 40px;
-    }
-    #make {
-        color: var(--light-contrast-color);
-    }
-    #make-again{
-        color: var(--light-contrast-color);
-    }
-
-    
+  body {
+    background-color: var(--background-color);
+    overflow: hidden;
+  }
+  h1 {
+    text-shadow: 3px 3px 0 var(--shadow-color);
+  }
+  #p-title-container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  #title-container {
+    margin-top: 10vh;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    text-align: left;
+    gap: 0;
+  }
+  #title-container h1 {
+    font-size: 40px;
+    color: var(--light-color);
+    margin: 0;
+    line-height: 1;
+  }
+  button {
+    display: block;
+    margin: 400px auto;
+    padding: 30px 80px;
+    font-size: 30px;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    box-shadow: 2px 2px 0 var(--light-color);
+    border-radius: 20px;
+    cursor: pointer;
+  }
 }
