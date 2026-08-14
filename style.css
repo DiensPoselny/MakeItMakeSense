@@ -4,6 +4,12 @@
   --background-color: #171717;
   --shadow-color: #565656;
 }
+.hidden {
+  display: none;
+}
+.show {
+  display: block;
+}
 
 @media only screen and (max-width: 600px) {
   * {
@@ -28,16 +34,23 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
-    text-align: left;
+    text-align: center;
     gap: 0;
   }
   #title-container h1 {
-    font-size: 40px;
+    font-size: 36px;
     color: var(--light-color);
     margin: 0;
     line-height: 1;
   }
+  #make {
+    padding-right: 75px;
+  }
+  #make-again {
+    padding-left: 15px;
+  }
   button {
+    text-align: center;
     display: block;
     margin: 400px auto;
     padding: 30px 80px;
@@ -48,7 +61,21 @@
     border-radius: 20px;
     cursor: pointer;
   }
-  .hidden {
-    display: none;
+  #wordpack-title {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 50px;
+  }
+  #wordpack-buttons {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 40px;
+  }
+  #wordpack-buttons button {
+    margin: 15px 0;
+    padding: 10px 20px;
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
   }
 }
