@@ -20,16 +20,20 @@
   body {
     background-color: var(--background-color);
     overflow: hidden;
+    margin: 0 auto;
+    padding: 0;
+    max-width: 80%;
   }
   h1 {
     text-shadow: 3px 3px 0 var(--shadow-color);
   }
   #p-title-container {
+    margin-top: 15vh;
     width: 80%;
     margin: 0 auto;
   }
   #title-container {
-    margin-top: 10vh;
+    margin-top: 15vh;
     height: auto;
     display: grid;
     grid-template-columns: 1fr;
@@ -38,16 +42,16 @@
     gap: 0;
   }
   #title-container h1 {
-    font-size: 36px;
+    font-size: 32px;
     color: var(--light-color);
     margin: 0;
     line-height: 1;
   }
   #make {
-    padding-right: 75px;
+    padding-right: 70px;
   }
   #make-again {
-    padding-left: 15px;
+    padding-left: 10px;
   }
   button {
     text-align: center;
@@ -60,7 +64,9 @@
     box-shadow: 2px 2px 0 var(--light-color);
     border-radius: 20px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
   }
+
   #wordpack-title {
     font-size: 24px;
     text-align: center;
@@ -73,9 +79,94 @@
   }
   #wordpack-buttons button {
     margin: 15px 0;
-    padding: 10px 20px;
+    padding: 40px 20px;
     font-size: 24px;
     width: 100%;
     text-align: center;
+  }
+  #wordpack-buttons button:active {
+    background-color: #11ab23;
+    color: var(--light-color);
+  }
+  #player-count-container {
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+  /* #player-count-buttons {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+    padding: 20px 50px;
+    font-size: 24px;
+    text-align: center;
+    gap: 20px;
+  }
+  #player-count-buttons button {
+    margin: 0 10px;
+    padding: 20px 20px;
+    font-size: 24px;
+    width: 100%;
+    text-align: center;
+  } */
+  #player-count-input {
+    display: block;
+    margin: 0 auto;
+    margin-top: 200px;
+    margin-bottom: 200px;
+    padding: 20px 20px;
+    background-color: var(--background-color);
+    color: var(--light-color);
+    width: 200px;
+    text-align: center;
+    font-size: 40px;
+  }
+  #player-count-title {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 50px;
+  }
+  #player-count-button {
+    margin-top: 0px;
+    padding: 30px 50px;
+    font-size: 24px;
+  }
+  #player-count-note {
+    color: var(--shadow-color);
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  #player-names-inputs input {
+    display: block;
+    margin: 0 auto;
+    margin-top: 5px;
+    padding: 10px 20px;
+    background-color: var(--background-color);
+    color: var(--light-color);
+    width: 200px;
+    text-align: center;
+    font-size: 16px;
+  }
+  #player-names-title {
+    font-size: 24px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+  #start-game-button {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: block;
+    margin: 0 auto;
+    padding: 15px 60px;
+    font-size: 24px;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    box-shadow: 2px 2px 0 var(--light-color);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
   }
 }

@@ -23,15 +23,45 @@
     <button>PLAY</button>
 
     <!--WORDPACK SELECT-->
-    <div id="wordpack-container">
+    <div id="wordpack-container" class="hidden">
       <h1 id="wordpack-title">CHOOSE A WORDPACK</h1>
       <div id="wordpack-buttons">
         <button id="wordpack-characters">Characters</button>
         <button id="wordpack-animals">Animals</button>
       </div>
+    </div>
 
-      <!-- PLAYER COUNT SELECT -->
-       
+    <!-- PLAYER COUNT SELECT -->
+    <div id="player-count-container" class="hidden">
+      <h1 id="player-count-title">SELECT PLAYER COUNT</h1>
+        <input
+          id="player-count-input"
+          type="number"
+          min="1"
+          max="10"
+          value="2"
+        />
+        <p id="player-count-note">*note - only 2-10 players allowed</p>
+        <button id="player-count-button">CONTINUE</button>
+      </div>
+    </div>
+
+    <!-- PLAYER NAMES SELECT -->
+    <div id="player-names-container" class="hidden">
+      <h1 id="player-names-title">ENTER PLAYER NAMES</h1>
+      <div id="player-names-inputs"></div>
+      <button id="start-game-button">START GAME</button>
+    </div>
+
+    <div id="game-container" class="hidden">
+      <h1 id="game-title">MAKE IT MAKE SENSE!</h1>
+      <h2 id="current-player">Current Player: <h3 id="current-player-name"></h3></h2>
+      <div id="game-button-container">
+        <button id="reveal-button">Reveal</button>
+        <button id="next-player-button" class="hidden">Next Player</button>
+      </div>
+
+
   </body>
 
   <script src="logic.js"></script>

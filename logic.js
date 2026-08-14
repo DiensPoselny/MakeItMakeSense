@@ -1,9 +1,13 @@
+// MAIN SCREEN LOGIC
 const playButton = document.querySelector("button");
 
 playButton.addEventListener("click", () => {
   const titleContainer = document.getElementById("p-title-container");
+  const wordpackContainer = document.getElementById("wordpack-container");
+
   titleContainer.classList.add("hidden");
   playButton.classList.add("hidden");
+  wordpackContainer.classList.remove("hidden");
 });
 
 const characterButton = document.getElementById("wordpack-characters");
@@ -115,12 +119,14 @@ const animalsWordpack = [
 ];
 
 let selectedWordpack = [];
+const playerCountContainer = document.getElementById("player-count-container");
 
 characterButton.addEventListener("click", () => {
   selectedWordpack = charactersWordpack;
 
   const wordpackContainer = document.getElementById("wordpack-container");
   wordpackContainer.classList.add("hidden");
+  playerCountContainer.classList.remove("hidden");
 });
 
 animalButton.addEventListener("click", () => {
@@ -128,4 +134,61 @@ animalButton.addEventListener("click", () => {
 
   const wordpackContainer = document.getElementById("wordpack-container");
   wordpackContainer.classList.add("hidden");
+  playerCountContainer.classList.remove("hidden");
+});
+
+let playerCount = 0;
+let playerNames = [];
+const startButton = document.getElementById("player-count-button");
+const playerNamesContainer = document.getElementById("player-names-container");
+const playerNamesInputsDiv = document.getElementById("player-names-inputs");
+const startGameButton = document.getElementById("start-game-button");
+
+startButton.addEventListener("click", () => {
+  playerCountContainer.classList.add("hidden");
+  playerCount = parseInt(document.getElementById("player-count-input").value);
+
+  // Create input fields for each player
+  playerNamesInputsDiv.innerHTML = "";
+  for (let i = 1; i <= playerCount; i++) {
+    const input = document.createElement("input");
+    input.type = "text";
+    input.id = `player-${i}-name`;
+    input.placeholder = `Player ${i} name`;
+    playerNamesInputsDiv.appendChild(input);
+  }
+
+  playerNamesContainer.classList.remove("hidden");
+});
+
+startGameButton.addEventListener("click", () => {
+  playerNames = [];
+  for (let i = 1; i <= playerCount; i++) {
+    const name =
+      document.getElementById(`player-${i}-name`).value || `Player ${i}`;
+    playerNames.push(name);
+  }
+  console.log("Players:", playerNames);
+
+  // Select random impostor
+  let impostorPlayer =
+    playerNames[Math.floor(Math.random() * playerNames.length)];
+  console.log(`Impostor Player: ${impostorPlayer}`);
+
+  playerNamesContainer.classList.add("hidden");
+  // Game starts here
+
+  // RANDOM WORD SELECT
+  let selectedWord =
+    selectedWordpack[Math.floor(Math.random() * selectedWordpack.length)];
+
+  console.log(
+    `Selected Word: ${selectedWord.word}, Hint: ${selectedWord.hint}`,
+  );
+
+  const gameContainer = document.getElementById("game-container");
+  gameContainer.classList.remove("hidden");
+
+  const playerNameDisplay = document.getElementById("current-player-name");
+  playerNameDisplay.textContent = playerNames[0];
 });
