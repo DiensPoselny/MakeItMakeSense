@@ -90,5 +90,11 @@
     </div>
   </body>
 
-  <script src="logic.js"></script>
+  <script src="logic.js">if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js")
+        .then(() => console.log("Offline režim připraven"))
+        .catch((err) => console.error("Chyba registrace SW:", err));
+  });
+  }</script>
 </html>
