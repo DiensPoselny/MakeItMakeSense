@@ -273,8 +273,8 @@ function GameStart() {
       timerDisplay.textContent = "0:00";
       document.getElementById("starting-player").classList.add("hidden");
       timerDisplay.classList.add("hidden");
-      const votingText = document.getElementById("voting-text");
-      votingText.classList.remove("hidden");
+      const votingContainer = document.getElementById("voting-container");
+      votingContainer.classList.remove("hidden");
     }
   }, 1000);
 }
@@ -291,4 +291,31 @@ nextPlayerButton.addEventListener("click", () => {
   } else {
     GameStart();
   }
+});
+
+// Play again button
+const playAgainButton = document.getElementById("play-again-button");
+playAgainButton.addEventListener("click", () => {
+  // Hide voting container
+  document.getElementById("voting-container").classList.add("hidden");
+
+  // Select new impostor and word
+  impostorPlayer = playerNames[Math.floor(Math.random() * playerNames.length)];
+  selectedWord =
+    selectedWordpack[Math.floor(Math.random() * selectedWordpack.length)];
+
+  console.log(`Impostor Player: ${impostorPlayer}`);
+  console.log(
+    `Selected Word: ${selectedWord.word}, Hint: ${selectedWord.hint}`,
+  );
+
+  // Reset game state
+  currentPlayerIndex = 0;
+  const playerNameDisplay = document.getElementById("current-player-name");
+  playerNameDisplay.textContent = playerNames[currentPlayerIndex];
+
+  // Show game container and reset buttons
+  gameContainer.classList.remove("hidden");
+  revealWordButton.classList.remove("hidden");
+  nextPlayerButton.classList.add("hidden");
 });
