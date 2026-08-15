@@ -119,7 +119,22 @@ const animalsWordpack = [
 ];
 
 let selectedWordpack = [];
+let playerCount = 0;
+let playerNames = [];
+let impostorPlayer = null;
+let selectedWord = null;
+let currentPlayerIndex = 0;
+let timerInterval = null;
+let timeRemaining = 240; // 4 minutes in seconds
+
 const playerCountContainer = document.getElementById("player-count-container");
+
+// Format time helper function
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+}
 
 characterButton.addEventListener("click", () => {
   selectedWordpack = charactersWordpack;
@@ -137,8 +152,6 @@ animalButton.addEventListener("click", () => {
   playerCountContainer.classList.remove("hidden");
 });
 
-let playerCount = 0;
-let playerNames = [];
 const startButton = document.getElementById("player-count-button");
 const playerNamesContainer = document.getElementById("player-names-container");
 const playerNamesInputsDiv = document.getElementById("player-names-inputs");
@@ -161,6 +174,8 @@ startButton.addEventListener("click", () => {
   playerNamesContainer.classList.remove("hidden");
 });
 
+const gameContainer = document.getElementById("game-container");
+
 startGameButton.addEventListener("click", () => {
   playerNames = [];
   for (let i = 1; i <= playerCount; i++) {
@@ -171,24 +186,109 @@ startGameButton.addEventListener("click", () => {
   console.log("Players:", playerNames);
 
   // Select random impostor
-  let impostorPlayer =
-    playerNames[Math.floor(Math.random() * playerNames.length)];
+  impostorPlayer = playerNames[Math.floor(Math.random() * playerNames.length)];
   console.log(`Impostor Player: ${impostorPlayer}`);
 
   playerNamesContainer.classList.add("hidden");
   // Game starts here
 
   // RANDOM WORD SELECT
-  let selectedWord =
+  selectedWord =
     selectedWordpack[Math.floor(Math.random() * selectedWordpack.length)];
 
   console.log(
     `Selected Word: ${selectedWord.word}, Hint: ${selectedWord.hint}`,
   );
 
-  const gameContainer = document.getElementById("game-container");
   gameContainer.classList.remove("hidden");
 
+  currentPlayerIndex = 0;
   const playerNameDisplay = document.getElementById("current-player-name");
-  playerNameDisplay.textContent = playerNames[0];
+  playerNameDisplay.textContent = playerNames[currentPlayerIndex];
+});
+
+const revealscreen = document.getElementById("reveal-screen-container");
+const revealWordButton = document.getElementById("reveal-button");
+const revealContinueButton = document.getElementById("reveal-continue-button");
+
+function ImpostorCheck() {
+  const titleReveal = document.getElementById("reveal-title");
+  const wordReveal = document.getElementById("reveal-word");
+
+  if (playerNames[currentPlayerIndex] === impostorPlayer) {
+    // Handle impostor reveal logic
+    titleReveal.textContent = "Impostor!";
+    wordReveal.textContent = `Hint: ${selectedWord.hint}`;
+  } else {
+    // Handle regular player reveal logic
+    titleReveal.textContent = "Your Word:";
+    wordReveal.textContent = selectedWord.word;
+  }
+}
+
+revealWordButton.addEventListener("click", () => {
+  revealscreen.classList.remove("hidden");
+  document.body.classList.add("reveal-active");
+
+  ImpostorCheck();
+});
+
+const nextPlayerButton = document.getElementById("next-player-button");
+
+revealContinueButton.addEventListener("click", () => {
+  revealscreen.classList.add("hidden");
+  document.body.classList.remove("reveal-active");
+  revealWordButton.classList.add("hidden");
+  nextPlayerButton.classList.remove("hidden");
+});
+
+function GameStart() {
+  gameContainer.classList.add("hidden");
+
+  // Select random starting player
+  const startingPlayer =
+    playerNames[Math.floor(Math.random() * playerNames.length)];
+  document.getElementById("starting-player").textContent =
+    `Starting Player: ${startingPlayer}`;
+  console.log(`Starting Player: ${startingPlayer}`);
+  document.getElementById("starting-player").classList.remove("hidden");
+
+  // Start 4-minute timer
+  timeRemaining = 10; // 4 minutes = 240 seconds
+  const timerDisplay = document.getElementById("game-timer");
+  timerDisplay.classList.remove("hidden");
+  timerDisplay.textContent = formatTime(timeRemaining);
+
+  // Clear existing timer if any
+  if (timerInterval) clearInterval(timerInterval);
+
+  // Start new timer
+  timerInterval = setInterval(() => {
+    timeRemaining--;
+    timerDisplay.textContent = formatTime(timeRemaining);
+
+    // Stop timer when it reaches 0
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      timerDisplay.textContent = "0:00";
+      document.getElementById("starting-player").classList.add("hidden");
+      timerDisplay.classList.add("hidden");
+      const votingText = document.getElementById("voting-text");
+      votingText.classList.remove("hidden");
+    }
+  }, 1000);
+}
+
+nextPlayerButton.addEventListener("click", () => {
+  if (currentPlayerIndex < playerNames.length - 1) {
+    currentPlayerIndex++;
+    const playerNameDisplay = document.getElementById("current-player-name");
+    playerNameDisplay.textContent = playerNames[currentPlayerIndex];
+
+    // Hide next player button and show reveal button
+    nextPlayerButton.classList.add("hidden");
+    revealWordButton.classList.remove("hidden");
+  } else {
+    GameStart();
+  }
 });

@@ -52,16 +52,29 @@
       <div id="player-names-inputs"></div>
       <button id="start-game-button">START GAME</button>
     </div>
-
+    <!-- GAME SCREEN -->
     <div id="game-container" class="hidden">
       <h1 id="game-title">MAKE IT MAKE SENSE!</h1>
       <h2 id="current-player">Current Player: <h3 id="current-player-name"></h3></h2>
       <div id="game-button-container">
         <button id="reveal-button">Reveal</button>
         <button id="next-player-button" class="hidden">Next Player</button>
+        
       </div>
+    </div>
+    <!-- REVEAL SCREEN -->
+    <div id="reveal-screen-container" class="hidden">
+      <h1 id="reveal-title"></h1>
+      <h2 id="reveal-word"></h2>
+      <button id="reveal-continue-button">Continue</button>
+    </div>
+    
+    <!-- TIMER SCREEN -->
+     <h1 id="starting-player" class="hidden"></h1>
+    <h2 id="game-timer" class="hidden">4:00</h2>
 
 
+    <h1 class="hidden" id="voting-text">VOTING TIME</h1>
   </body>
 
   <script src="logic.js"></script>
