@@ -353,7 +353,7 @@ function GameStart() {
   document.getElementById("starting-player").classList.remove("hidden");
 
   // Start 4-minute timer
-  timeRemaining = 10; // 4 minutes = 240 seconds
+  timeRemaining = 240; // 4 minutes = 240 seconds
   const timerDisplay = document.getElementById("game-timer");
   timerDisplay.classList.remove("hidden");
   timerDisplay.textContent = formatTime(timeRemaining);
