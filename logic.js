@@ -12,6 +12,8 @@ playButton.addEventListener("click", () => {
 
 const characterButton = document.getElementById("wordpack-characters");
 const animalButton = document.getElementById("wordpack-animals");
+const moviesButton = document.getElementById("wordpack-movies-series");
+
 const charactersWordpack = [
   { word: "Yoda", hint: "Jedi" },
   { word: "Darth Vader", hint: "Breathing" },
@@ -217,6 +219,112 @@ const animalsWordpack = [
   { word: "Leech", hint: "Blood" },
 ];
 
+const moviesAndSeriesWordpack = [
+  { word: "Titanic", hint: "Iceberg" },
+  { word: "Inception", hint: "Dream" },
+  { word: "Avatar", hint: "Pandora" },
+  { word: "The Matrix", hint: "Simulation" },
+  { word: "Interstellar", hint: "Blackhole" },
+  { word: "Gladiator", hint: "Colosseum" },
+  { word: "Jurassic Park", hint: "Dinosaur" },
+  { word: "Pulp Fiction", hint: "Briefcase" },
+  { word: "Fight Club", hint: "Soap" },
+  { word: "Forrest Gump", hint: "Running" },
+  { word: "The Godfather", hint: "Mafia" },
+  { word: "The Shawshank Redemption", hint: "Escape" },
+  { word: "The Dark Knight", hint: "Joker" },
+  { word: "Avengers: Endgame", hint: "Snap" },
+  { word: "Star Wars", hint: "Force" },
+  { word: "The Lord of the Rings", hint: "Mordor" },
+  { word: "Harry Potter", hint: "Hogwarts" },
+  { word: "Pirates of the Caribbean", hint: "Kraken" },
+  { word: "Back to the Future", hint: "DeLorean" },
+  { word: "Ghostbusters", hint: "Proton" },
+  { word: "Alien", hint: "Xenomorph" },
+  { word: "Blade Runner", hint: "Replicant" },
+  { word: "Die Hard", hint: "Skyscraper" },
+  { word: "The Terminator", hint: "Judgment" },
+  { word: "Rocky", hint: "Boxing" },
+  { word: "Rambo", hint: "Survival" },
+  { word: "Top Gun", hint: "Fighter" },
+  { word: "Mad Max", hint: "Wasteland" },
+  { word: "Jaws", hint: "Shark" },
+  { word: "Home Alone", hint: "Boobytraps" },
+  { word: "The Lion King", hint: "Pride" },
+  { word: "Toy Story", hint: "Toys" },
+  { word: "Finding Nemo", hint: "Ocean" },
+  { word: "Monsters, Inc.", hint: "Doors" },
+  { word: "Up", hint: "Balloons" },
+  { word: "Cars", hint: "Piston" },
+  { word: "Coco", hint: "Afterlife" },
+  { word: "Frozen", hint: "Arendelle" },
+  { word: "Zootopia", hint: "Mammals" },
+  { word: "Ratatouille", hint: "Chef" },
+  { word: "WALL-E", hint: "Trash" },
+  { word: "The Incredibles", hint: "Supers" },
+  { word: "Spider-Man: Into the Spider-Verse", hint: "Multiverse" },
+  { word: "Oppenheimer", hint: "Atomic" },
+  { word: "Barbie", hint: "Barbieland" },
+  { word: "Dune", hint: "Spice" },
+  { word: "Whiplash", hint: "Drums" },
+  { word: "La La Land", hint: "Musical" },
+  { word: "Parasite", hint: "Basement" },
+  { word: "The Wolf of Wall Street", hint: "Stocks" },
+  { word: "Breaking Bad", hint: "Methamphetamine" },
+  { word: "Better Call Saul", hint: "Lawyer" },
+  { word: "Game of Thrones", hint: "Westeros" },
+  { word: "House of the Dragon", hint: "Targaryen" },
+  { word: "Stranger Things", hint: "Upside-Down" },
+  { word: "Wednesday", hint: "Nevermore" },
+  { word: "Squid Game", hint: "Elimination" },
+  { word: "Money Heist", hint: "Mint" },
+  { word: "The Witcher", hint: "Mutant" },
+  { word: "Peaky Blinders", hint: "Flatcap" },
+  { word: "The Boys", hint: "Homelander" },
+  { word: "The Mandalorian", hint: "Grogu" },
+  { word: "The Last of Us", hint: "Cordyceps" },
+  { word: "Chernobyl", hint: "Radiation" },
+  { word: "Sherlock", hint: "Baker" },
+  { word: "Black Mirror", hint: "Dystopia" },
+  { word: "Dark", hint: "Timeloop" },
+  { word: "The Crown", hint: "Monarchy" },
+  { word: "Friends", hint: "Central-Perk" },
+  { word: "How I Met Your Mother", hint: "Umbrella" },
+  { word: "The Big Bang Theory", hint: "Bazinga" },
+  { word: "The Office", hint: "Dunder-Mifflin" },
+  { word: "Parks and Recreation", hint: "Pawnee" },
+  { word: "Brooklyn Nine-Nine", hint: "Detectives" },
+  { word: "Modern Family", hint: "Mockumentary" },
+  { word: "The Simpsons", hint: "Springfield" },
+  { word: "Family Guy", hint: "Quahog" },
+  { word: "South Park", hint: "Colorado" },
+  { word: "Rick and Morty", hint: "Portal-Gun" },
+  { word: "BoJack Horseman", hint: "Hollywoo" },
+  { word: "Arcane", hint: "Hextech" },
+  { word: "Cyberpunk: Edgerunners", hint: "Future" },
+  { word: "Attack on Titan", hint: "Walls" },
+  { word: "Death Note", hint: "Shinigami" },
+  { word: "Naruto", hint: "Hokage" },
+  { word: "Dragon Ball Z", hint: "Saiyan" },
+  { word: "One Piece", hint: "Grand-Line" },
+  { word: "Demon Slayer", hint: "Katana" },
+  { word: "Vikings", hint: "Valhalla" },
+  { word: "The Walking Dead", hint: "Walkers" },
+  { word: "Lost", hint: "Island" },
+  { word: "Prison Break", hint: "Fox-River" },
+  { word: "Dexter", hint: "Blood-Spatter" },
+  { word: "True Detective", hint: "Carcosa" },
+  { word: "Fargo", hint: "Snow" },
+  { word: "Succession", hint: "Waystar" },
+  { word: "The Sopranos", hint: "Mobster" },
+  { word: "The Wire", hint: "Baltimore" },
+  { word: "Westworld", hint: "Hosts" },
+  { word: "Severance", hint: "Lumon" },
+  { word: "Odyssea", hint: "Mythology" },
+  { word: "Spiderman: Brand New Day", hint: "Mutation" },
+  { word: "Project Hail Mary", hint: "Statement" },
+];
+
 let selectedWordpack = [];
 let playerCount = 0;
 let playerNames = [];
@@ -245,6 +353,14 @@ characterButton.addEventListener("click", () => {
 
 animalButton.addEventListener("click", () => {
   selectedWordpack = animalsWordpack;
+
+  const wordpackContainer = document.getElementById("wordpack-container");
+  wordpackContainer.classList.add("hidden");
+  playerCountContainer.classList.remove("hidden");
+});
+
+moviesButton.addEventListener("click", () => {
+  selectedWordpack = moviesAndSeriesWordpack;
 
   const wordpackContainer = document.getElementById("wordpack-container");
   wordpackContainer.classList.add("hidden");
