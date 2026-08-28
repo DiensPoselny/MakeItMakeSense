@@ -331,6 +331,16 @@ let playerNames = [];
 let impostorPlayer = null;
 let selectedWord = null;
 let currentPlayerIndex = 0;
+const playerNamesStorageKey = "makeItMakeSensePlayerNames";
+let savedPlayerNames = [];
+
+try {
+  const storedPlayerNames = localStorage.getItem(playerNamesStorageKey);
+  savedPlayerNames = storedPlayerNames ? JSON.parse(storedPlayerNames) : [];
+  if (!Array.isArray(savedPlayerNames)) savedPlayerNames = [];
+} catch (error) {
+  savedPlayerNames = [];
+}
 
 const playerCountContainer = document.getElementById("player-count-container");
 
@@ -359,13 +369,18 @@ moviesButton.addEventListener("click", () => {
 });
 
 const startButton = document.getElementById("player-count-button");
+const playerCountInput = document.getElementById("player-count-input");
 const playerNamesContainer = document.getElementById("player-names-container");
 const playerNamesInputsDiv = document.getElementById("player-names-inputs");
 const startGameButton = document.getElementById("start-game-button");
 
+if (savedPlayerNames.length >= 1 && savedPlayerNames.length <= 10) {
+  playerCountInput.value = savedPlayerNames.length;
+}
+
 startButton.addEventListener("click", () => {
   playerCountContainer.classList.add("hidden");
-  playerCount = parseInt(document.getElementById("player-count-input").value);
+  playerCount = parseInt(playerCountInput.value);
 
   // Create input fields for each player
   playerNamesInputsDiv.innerHTML = "";
@@ -374,6 +389,7 @@ startButton.addEventListener("click", () => {
     input.type = "text";
     input.id = `player-${i}-name`;
     input.placeholder = `Player ${i} name`;
+    input.value = savedPlayerNames[i - 1] || "";
     playerNamesInputsDiv.appendChild(input);
   }
 
@@ -389,6 +405,8 @@ startGameButton.addEventListener("click", () => {
       document.getElementById(`player-${i}-name`).value || `Player ${i}`;
     playerNames.push(name);
   }
+  savedPlayerNames = [...playerNames];
+  localStorage.setItem(playerNamesStorageKey, JSON.stringify(savedPlayerNames));
   console.log("Players:", playerNames);
 
   // Select random impostor
