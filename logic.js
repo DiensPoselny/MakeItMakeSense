@@ -331,17 +331,8 @@ let playerNames = [];
 let impostorPlayer = null;
 let selectedWord = null;
 let currentPlayerIndex = 0;
-let timerInterval = null;
-let timeRemaining = 240; // 4 minutes in seconds
 
 const playerCountContainer = document.getElementById("player-count-container");
-
-// Format time helper function
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const secs = seconds % 60;
-  return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
-}
 
 characterButton.addEventListener("click", () => {
   selectedWordpack = charactersWordpack;
@@ -466,32 +457,9 @@ function GameStart() {
   document.getElementById("starting-player").textContent =
     `Starting Player: ${startingPlayer}`;
   console.log(`Starting Player: ${startingPlayer}`);
-  document.getElementById("starting-player").classList.remove("hidden");
-
-  // Start 4-minute timer
-  timeRemaining = 240; // 4 minutes = 240 seconds
-  const timerDisplay = document.getElementById("game-timer");
-  timerDisplay.classList.remove("hidden");
-  timerDisplay.textContent = formatTime(timeRemaining);
-
-  // Clear existing timer if any
-  if (timerInterval) clearInterval(timerInterval);
-
-  // Start new timer
-  timerInterval = setInterval(() => {
-    timeRemaining--;
-    timerDisplay.textContent = formatTime(timeRemaining);
-
-    // Stop timer when it reaches 0
-    if (timeRemaining <= 0) {
-      clearInterval(timerInterval);
-      timerDisplay.textContent = "0:00";
-      document.getElementById("starting-player").classList.add("hidden");
-      timerDisplay.classList.add("hidden");
-      const votingContainer = document.getElementById("voting-container");
-      votingContainer.classList.remove("hidden");
-    }
-  }, 1000);
+  document
+    .getElementById("starting-player-container")
+    .classList.remove("hidden");
 }
 
 nextPlayerButton.addEventListener("click", () => {
@@ -511,8 +479,7 @@ nextPlayerButton.addEventListener("click", () => {
 // Play again button
 const playAgainButton = document.getElementById("play-again-button");
 playAgainButton.addEventListener("click", () => {
-  // Hide voting container
-  document.getElementById("voting-container").classList.add("hidden");
+  document.getElementById("starting-player-container").classList.add("hidden");
 
   // Select new impostor and word
   impostorPlayer = playerNames[Math.floor(Math.random() * playerNames.length)];

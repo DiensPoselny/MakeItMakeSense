@@ -79,17 +79,10 @@ body.reveal-active::before {
   color: var(--light-color);
 }
 
-/* VOTING CONTAINER STYLES */
-#voting-container {
+/* STARTING PLAYER STYLES */
+#starting-player-container {
   text-align: center;
   margin-top: 50px;
-}
-
-#voting-text {
-  font-size: 48px;
-  color: var(--light-color);
-  text-shadow: 3px 3px 0 var(--shadow-color);
-  margin: 30px 0;
 }
 
 #play-again-button {
@@ -103,21 +96,12 @@ body.reveal-active::before {
   transition: all 0.2s ease-in-out;
   border: none;
   font-family: "Bowlby One", sans-serif;
-  margin-top: 20px;
+  margin-top: 200px;
 }
 
 #play-again-button:active {
   background-color: #11ab23;
   color: var(--light-color);
-}
-
-/* GAME TIMER STYLES */
-#game-timer {
-  text-align: center;
-  font-size: 60px;
-  color: var(--light-color);
-  text-shadow: 2px 2px 0 var(--shadow-color);
-  margin: 30vh 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -314,9 +298,5 @@ body.reveal-active::before {
     font-size: 30px;
     text-align: center;
     color: #dfe457;
-  }
-  #voting-text {
-    text-align: center;
-    margin-top: 45vh;
   }
 }
